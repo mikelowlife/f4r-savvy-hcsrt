@@ -102,7 +102,7 @@ def clone_and_modify_nested_value(data, target_key, suffix_to_append):
         return data
 
 
-def api_wo_to_aas_wo(api_wo,aas_wo):  
+def api_wo_to_aas_wo(api_wo,aas_wo):
     for wo_prop in aas_wo['value']:
         if wo_prop['idShort'].startswith('Identifier'):
             wo_prop['value'] = api_wo['workOrderIdentifier']
@@ -117,8 +117,8 @@ def api_wo_to_aas_wo(api_wo,aas_wo):
                 if rt_prop['idShort'].startswith('ProcessName'):
                     rt_prop['value'] = api_wo['workOrderItems'][0]['itemProcessName'] #de momento solo 1 item por WO
                 elif rt_prop['idShort'].startswith('OperationSequence'):
-                    new_ops = []                    
-                    op = rt_prop['value'][0] # siempre hay al menos una operacion                    
+                    new_ops = []
+                    op = rt_prop['value'][0] # siempre hay al menos una operacion
                     i = 1
                     for api_op in api_wo['workOrderItems'][0]['itemOperations']:
                         new_op = clone_and_modify_nested_value(op,"idShort",str(i))
@@ -126,7 +126,7 @@ def api_wo_to_aas_wo(api_wo,aas_wo):
                         for op_prop in new_op['value']:
                             if op_prop['idShort'].startswith('OperationName'):
                                 op_prop['value'] = api_op['operationName']
-                            elif op_prop['idShort'].startswith('StartTime'):                                
+                            elif op_prop['idShort'].startswith('StartTime'):
                                 op_prop['value'] = api_op['operationStartTime']
                             elif op_prop['idShort'].startswith('Duration'):
                                 op_prop['value'] = api_op['operationTotalDuration']
@@ -235,6 +235,95 @@ def getSAVVYPlanners():
         print(str(datetime.now()) + ": No data")
         return dict()
 
+def checkSAVVYSchedule(plannerID):
+    time.sleep(1)
+    savvy_session = requests.Session()
+    sequence = str(int(datetime.now().timestamp()))
+    blurb = "GET\ntext/plain\n" + sequence + "\n/v2/planners/" + plannerID + "/schedule"
+    auth = calculateRFC2104HMAC(bytes(blurb,'latin-1'), bytes(API_SECRET,'latin-1'))
+    savvy_session.headers.update({"content-type":"text/plain"})
+    savvy_session.headers.update({"X-M2C-Sequence":sequence})
+    savvy_session.headers.update({"Authorization":"M2C " + API_KEY + ":" + auth})
+    #savvy_session.proxies = {"https":"http://192.168.40.10:3128"}
+    print(str(datetime.now()) + ": Requesting schedule status from API at " + API_PLANNERS_URL + "/" + plannerID +"/schedule")
+    response = savvy_session.get(API_PLANNERS_URL + "/" + plannerID +"/schedule",verify=False)
+    print(str(datetime.now()) + ": Response received (Status code " + str(response.status_code) + ")")
+    if response.ok:
+        print(response.content)
+        return json.loads(response.content)
+    else:
+        print(str(datetime.now()) + ": No data")
+
+def clearSAVVYSchedule(plannerID):
+    time.sleep(1)
+    savvy_session = requests.Session()
+    sequence = str(int(datetime.now().timestamp()))
+    blurb = "PUT\ntext/plain\n" + sequence + "\n/v2/planners/" + plannerID + "/schedule/clear"
+    auth = calculateRFC2104HMAC(bytes(blurb,'latin-1'), bytes(API_SECRET,'latin-1'))
+    savvy_session.headers.update({"content-type":"text/plain"})
+    savvy_session.headers.update({"X-M2C-Sequence":sequence})
+    savvy_session.headers.update({"Authorization":"M2C " + API_KEY + ":" + auth})
+    #savvy_session.proxies = {"https":"http://192.168.40.10:3128"}
+    print(str(datetime.now()) + ": Requesting API to clear schedule " + API_PLANNERS_URL + "/" + plannerID + "/schedule/clear")
+    response = savvy_session.put(API_PLANNERS_URL + "/" + plannerID + "/schedule/clear",verify=False)
+    print(str(datetime.now()) + ": Response received (Status code " + str(response.status_code) + ")")
+    if response.ok:
+        #print(response.content)
+        return json.loads(response.content)
+    else:
+        print(str(datetime.now()) + ": No data")
+
+def modifySAVVYSchedule(plannerID,delete_wos,include_wos):
+    time.sleep(1)
+    savvy_session = requests.Session()
+    sequence = str(int(datetime.now().timestamp()))
+    blurb = "PUT\napplication/json\n" + sequence + "\n/v2/planners/" + plannerID + "/schedule/modify"
+    auth = calculateRFC2104HMAC(bytes(blurb,'latin-1'), bytes(API_SECRET,'latin-1'))
+    savvy_session.headers.update({"content-type":"application/json"})
+    savvy_session.headers.update({"X-M2C-Sequence":sequence})
+    savvy_session.headers.update({"Authorization":"M2C " + API_KEY + ":" + auth})
+    #savvy_session.proxies = {"https":"http://192.168.40.10:3128"}
+    print(str(datetime.now()) + ": Requesting API to modify schedule " + API_PLANNERS_URL + "/" + plannerID +"/schedule/modify")
+    print("WOs to remove from schedule: ")
+    updated_wos=dict()
+    updated_wos["include_wos"] = list()
+    updated_wos["delete_wos"] = list()
+    for d_wo in delete_wos:
+        print(d_wo["workOrderIdentifier"])
+        updated_wos["delete_wos"].append(d_wo["workOrderIdentifier"])
+    print("WOs to include in schedule: ")
+    for i_wo in include_wos:
+        print(i_wo["workOrderIdentifier"])
+        updated_wos["include_wos"].append(i_wo["workOrderIdentifier"])
+    print(updated_wos)
+    response = savvy_session.put(API_PLANNERS_URL + "/" + plannerID +"/schedule/modify",data=json.dumps(updated_wos),headers={'Content-Type':'application/json'},verify=False)
+    print(str(datetime.now()) + ": Response received (Status code " + str(response.status_code) + ")")
+    if response.ok:
+        print(response.content)
+        return json.loads(response.content)
+    else:
+        print(str(datetime.now()) + ": No data")
+
+
+def stopSAVVYRescheduling(plannerID):
+    time.sleep(1)
+    savvy_session = requests.Session()
+    sequence = str(int(datetime.now().timestamp()))
+    blurb = "PUT\ntext/plain\n" + sequence + "\n/v2/planners/" + plannerID + "/schedule/stop"
+    auth = calculateRFC2104HMAC(bytes(blurb,'latin-1'), bytes(API_SECRET,'latin-1'))
+    savvy_session.headers.update({"content-type":"text/plain"})
+    savvy_session.headers.update({"X-M2C-Sequence":sequence})
+    savvy_session.headers.update({"Authorization":"M2C " + API_KEY + ":" + auth})
+    #savvy_session.proxies = {"https":"http://192.168.40.10:3128"}
+    print(str(datetime.now()) + ": Requesting API to stop rescheduling algorithm " + API_PLANNERS_URL + "/" + plannerID +"/schedule/stop")
+    response = savvy_session.put(API_PLANNERS_URL + "/" + plannerID +"/schedule/stop",verify=False)
+    print(str(datetime.now()) + ": Response received (Status code " + str(response.status_code) + ")")
+    if response.ok:
+        #print(response.content)
+        return json.loads(response.content)
+    else:
+        print(str(datetime.now()) + ": No data")
+
 def getSAVVYWorkOrders(plannerID,scheduled="1"):
     time.sleep(1)
     savvy_session = requests.Session()
@@ -257,11 +346,13 @@ def getSAVVYWorkOrders(plannerID,scheduled="1"):
 
 def apiInit():
     planners = getSAVVYPlanners()
+    plannerID = ""
     machines = getSAVVYMachines()
     scheduled_work_orders = dict()
     unscheduled_work_orders = dict()
     for planner in planners:
         if "F4R" in planner['plannerName']:
+            plannerID = planner['plannerId']
             print("F4R planner found: " + planner['plannerName'])
             scheduled_work_orders = getSAVVYWorkOrders(planner['plannerId'])
             unscheduled_work_orders = getSAVVYWorkOrders(planner['plannerId'],"0")
@@ -286,25 +377,26 @@ def apiInit():
             print("  Unscheduled Work Order: " + work_order['workOrderIdentifier'])
 
 
-    return scheduled_work_orders, unscheduled_work_orders, machines
+    return scheduled_work_orders, unscheduled_work_orders, machines, plannerID
 
 
 # AAS Connection params
-AAS_DOMAIN = "82.223.202.158"
-AAS_ENV = "http://" + AAS_DOMAIN + "/aas-env"
+#AAS_DOMAIN = "82.223.202.158"
+AAS_DOMAIN = "flex4res.savvyds.com"
+AAS_ENV = "https://" + AAS_DOMAIN + "/aas-env"
 AAS_ENV_SHELLS = AAS_ENV + "/shells"
 AAS_ENV_SUBMODELS = AAS_ENV + "/submodels"
-AAS_REGISTRY = "http://" + AAS_DOMAIN + "/aas-registry"
-AAS_SM_REGISTRY = "http://" + AAS_DOMAIN + "/sm-registry"
+AAS_REGISTRY = "https://" + AAS_DOMAIN + "/aas-registry"
+AAS_SM_REGISTRY = "https://" + AAS_DOMAIN + "/sm-registry"
 AAS_SM_REGISTRY_SUBMODELS = AAS_SM_REGISTRY + "/submodel-descriptors"
-AAS_DISCOVERY = "http://" + AAS_DOMAIN + "/aas-discovery" 
+AAS_DISCOVERY = "https://" + AAS_DOMAIN + "/aas-discovery"
 
 def aasInit():
     # Query AAS Server
     shells = dict()
     submodels = dict()
     aas_session = requests.Session()
-    aas_session.proxies = {"http":"http://192.168.40.10:3128"}
+    #aas_session.proxies = {"http":"http://192.168.40.10:3128"}
 
     resilience_aas = dict()
     resilience_aas_found = False
@@ -341,14 +433,14 @@ def aasInit():
     if prod_schedule_aas_found:
         print("Submodel instance found for production schedule: " + prod_schedule_aas['idShort'])
         print("Number of elements in submodel: " + str(len(prod_schedule_aas['submodelElements'])))
-        
+
         for sme in prod_schedule_aas['submodelElements']:
             if sme['idShort'] == 'WorkOrder' and len(sme['value'])>0:
                 work_order_id = ''
                 new_work_order = sme
                 for value in sme['value']:
                     if value['idShort'] == 'Identifier':
-                        work_order_id = value['value']                       
+                        work_order_id = value['value']
     if resilience_aas_found:
         print("Submodel instance found for resilience: " + resilience_aas['idShort'])
         print("Number of elements in submodel: " + str(len(resilience_aas['submodelElements'])))
@@ -358,17 +450,69 @@ def aasInit():
 
     return prod_schedule_aas, prod_schedule_aas_endpoint, resilience_aas, resilience_aas_endpoint
 
-############# MAIN ##########
-s_wos,u_wos,mqs=apiInit()
-#print(mqs)
-#print(json.dumps(s_wos,indent=4))
-#print(json.dumps(u_wos,indent=4))
+############# MAIN #############
+
+### CHECK RESILIENCE AAS & RESCHEDULE ###
+aas_session = requests.Session()
+#aas_session.proxies = {"http":"http://192.168.40.10:3128"}
 schedule,s_endpoint,resilience,r_endpoint=aasInit()
-#print(json.dumps(schedule,indent=4))
+resilience_risk_calculation = ""
+resilience_risk_threshold = 5
+for sme in resilience['submodelElements']:
+        if sme['idShort'] == 'ResilienceKPI':
+            for kpi in sme['value']:
+                if kpi['idShort'] == 'ResilienceCalculation':
+                    resilience_risk_calculation = kpi['value']
+                    break
+            break
+print("Current resilience calculation: " + resilience_risk_calculation)
+if int(resilience_risk_calculation) > resilience_risk_threshold:
+    print("Current schedule resilience risk calculation exceeds threshold, rescheduling...")
+    s_wos,u_wos,mqs,plannerID=apiInit()
+    sched_status = checkSAVVYSchedule(plannerID)
+    print("Schedule status: " + sched_status['plannerScheduleStatus'])
+    while(not sched_status['plannerScheduleStatus'].endswith('synced')):
+        if sched_status['plannerScheduleStatus'] == 'rescheduling':
+            print("Stopping GA rescheduling...")
+            stopSAVVYRescheduling(plannerID)
+            time.sleep(5)
+            sched_status = checkSAVVYSchedule(plannerID)
+            print("Schedule status: " + sched_status['plannerScheduleStatus'])
+        elif sched_status['plannerScheduleStatus'] == 'syncing':
+            print("Waiting 10 seconds for schedule to sync...")
+            time.sleep(10)
+            sched_status = checkSAVVYSchedule(plannerID)
+            print("Scheduling status: " + sched_status['plannerScheduleStatus'])
+
+    #if(len(s_wos)>0):
+    #    clearSAVVYSchedule(plannerID)
+    #    print("Current schedule cleared")
+    #    s_wos = getSAVVYWorkOrders(plannerID,"1")
+    #    u_wos = getSAVVYWorkOrders(plannerID,"0")
+
+
+
+    modifySAVVYSchedule(plannerID,u_wos,s_wos)
+    print("Rescheduling triggered; waiting 60 seconds for GA to kick in...")
+    time.sleep(60)
+    sched_status = checkSAVVYSchedule(plannerID)
+    print("Schedule status: " + sched_status['plannerScheduleStatus'])
+    while(sched_status['plannerScheduleStatus'] == 'rescheduling'):
+        time.sleep(5)
+        sched_status = checkSAVVYSchedule(plannerID)
+        print("Schedule status: " + sched_status['plannerScheduleStatus'])
+
+
+    print("Production schedule has been modified!")
+    s_wos = getSAVVYWorkOrders(plannerID,"1")
+    print(json.dumps(s_wos,indent=4))
+
+### UPDATE SCHEDULE & RESILIENCE AAS ###
+s_wos,u_wos,mqs,plannerID=apiInit()
+schedule,s_endpoint,resilience,r_endpoint=aasInit()
 
 # Clean first WO entry to use as base
 base_wo=clone_and_modify_nested_value(schedule['submodelElements'][0],"idShort","")
-#print(json.dumps(base_wo,indent=4))
 schedule['submodelElements'].clear()
 # Populate AAS with as many scheduled WOs as returned by API
 i=1
@@ -385,12 +529,11 @@ if len(schedule['submodelElements'])==0:
 
 #print(json.dumps(schedule,indent=4))
 print("Updating Production Schedule AAS Submodel on endpoint "+s_endpoint)
-aas_session = requests.Session()
-aas_session.proxies = {"http":"http://192.168.40.10:3128"}
+
 response = aas_session.put(s_endpoint,data=json.dumps(schedule),headers={'Content-Type':'application/json'})
 if response.ok:
     print("AAS Production Schedule Submodel updated")
-    #TODO: resilience calculation and AAS update
+    #resilience calculation and AAS update
     resilience_risk_calculation=0
     for mq in mqs:
         idmq = mq['machineId']
@@ -411,14 +554,15 @@ if response.ok:
 
             else:
                 print("No risk value data available for machine " + mq['machineName'])
-    
+
+    #print(resilience)
     for sme in resilience['submodelElements']:
         if sme['idShort'] == 'ResilienceKPI':
             for kpi in sme['value']:
                 if kpi['idShort'] == 'ResilienceCalculation':
                     kpi['value'] = str(resilience_risk_calculation)
                     break
-            break            
+            break
     print("Updating Resilience SubModel at " + r_endpoint)
     response = aas_session.put(r_endpoint,data=json.dumps(resilience),headers={'Content-Type':'application/json'})
     if response.ok:
@@ -430,8 +574,4 @@ else:
     print("Could not update Production Schedule Submodel: "+str(response.status_code))
     print(response.request.headers)
 
-
-
-
-    
 
