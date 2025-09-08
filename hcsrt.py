@@ -484,9 +484,10 @@ if int(resilience_risk_calculation) > resilience_risk_threshold:
             sched_status = checkSAVVYSchedule(plannerID)
             print("Scheduling status: " + sched_status['plannerScheduleStatus'])
 
-    #if(len(s_wos)>0):
-    #    clearSAVVYSchedule(plannerID)
-    #    print("Current schedule cleared")
+    if(len(s_wos)>0):
+        clearSAVVYSchedule(plannerID)
+        time.sleep(30)
+        print("Current schedule cleared")
     #    s_wos = getSAVVYWorkOrders(plannerID,"1")
     #    u_wos = getSAVVYWorkOrders(plannerID,"0")
 
@@ -573,5 +574,6 @@ if response.ok:
 else:
     print("Could not update Production Schedule Submodel: "+str(response.status_code))
     print(response.request.headers)
+
 
 
