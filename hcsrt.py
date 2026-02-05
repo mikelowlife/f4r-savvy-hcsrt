@@ -371,7 +371,8 @@ def apiInit():
                             operators.append(operator['operatorName'])
                         #print("          Operators compatible with machine: "+ str(operators))
                     elif len(operation['operationWorkCenter']['businessPartner'])>0: #business partner operation
-                        print("        Business partner for outsourced operation: "+ operation['operationWorkCenter']['businessPartner']['businessPartnerName'])
+                        #print("        Business partner for outsourced operation "+ operation['operationWorkCenter']['businessPartner']['businessPartnerName'])
+                        print("        Operation outsourced to business partner")
     if len(unscheduled_work_orders)>0:
         for work_order in unscheduled_work_orders:
             print("  Unscheduled Work Order: " + work_order['workOrderIdentifier'])
@@ -574,6 +575,7 @@ if response.ok:
 else:
     print("Could not update Production Schedule Submodel: "+str(response.status_code))
     print(response.request.headers)
+
 
 
 
