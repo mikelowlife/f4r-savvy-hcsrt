@@ -1,1 +1,635 @@
-[]
+[
+    {
+        "workOrderIdentifier": "100002721",
+        "workOrderDescription": "",
+        "workOrderCustomer": "Soraluce",
+        "workOrderItems": [
+            {
+                "itemName": "41GP561101",
+                "itemAmount": 10,
+                "itemProcessName": "Route 30",
+                "itemOperations": [
+                    {
+                        "operationName": "Complete boring",
+                        "operationStartTime": "2026-02-11T17:25:00Z",
+                        "operationEndTime": "2026-02-14T17:05:00Z",
+                        "operationDuration": "4h",
+                        "operationSetupDuration": "10m",
+                        "operationTotalDuration": "4h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "E4L3_4R3U9G",
+                                "scheduleMachineName": "FX-5801",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Boring finish",
+                        "operationStartTime": "2026-02-17T17:25:00Z",
+                        "operationEndTime": "2026-02-18T14:15:00Z",
+                        "operationDuration": "1h",
+                        "operationSetupDuration": "5m",
+                        "operationTotalDuration": "1h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "QHJ_DEWXF7",
+                                "scheduleMachineName": "FP-8000",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Level and check",
+                        "operationStartTime": "2026-02-18T14:15:00Z",
+                        "operationEndTime": "2026-02-19T11:05:00Z",
+                        "operationDuration": "1h",
+                        "operationSetupDuration": "5m",
+                        "operationTotalDuration": "1h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "E4L3_4R3U9G",
+                                "scheduleMachineName": "FX-5801",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "workOrderIdentifier": "100002722",
+        "workOrderDescription": "",
+        "workOrderCustomer": "Soraluce",
+        "workOrderItems": [
+            {
+                "itemName": "41GP561101",
+                "itemAmount": 15,
+                "itemProcessName": "Route 40",
+                "itemOperations": [
+                    {
+                        "operationName": "First binding roughing",
+                        "operationStartTime": "2026-02-06T10:55:00Z",
+                        "operationEndTime": "2026-02-10T16:25:00Z",
+                        "operationDuration": "3h",
+                        "operationSetupDuration": "10m",
+                        "operationTotalDuration": "3h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "BQC_S8CF2G",
+                                "scheduleMachineName": "PM-10005",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Grease Groove Milling",
+                        "operationStartTime": "2026-02-10T16:25:00Z",
+                        "operationEndTime": "2026-02-13T09:25:00Z",
+                        "operationDuration": "2h",
+                        "operationSetupDuration": "20m",
+                        "operationTotalDuration": "2h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "BHG_2NKPJN",
+                                "scheduleMachineName": "FS - 6801",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 6",
+                                        "operatorCode": "006"
+                                    },
+                                    {
+                                        "operatorName": "Operator 7",
+                                        "operatorCode": "007"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Boring & keyways",
+                        "operationStartTime": "2026-02-13T09:25:00Z",
+                        "operationEndTime": "2026-02-16T15:10:00Z",
+                        "operationDuration": "2h",
+                        "operationSetupDuration": "15m",
+                        "operationTotalDuration": "2h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "QHJ_DEWXF7",
+                                "scheduleMachineName": "FP-8000",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Level and check",
+                        "operationStartTime": "2026-02-16T16:25:00Z",
+                        "operationEndTime": "2026-02-17T18:40:00Z",
+                        "operationDuration": "1h",
+                        "operationSetupDuration": "5m",
+                        "operationTotalDuration": "1h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "E4L3_4R3U9G",
+                                "scheduleMachineName": "FX-5801",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Second binding finish",
+                        "operationStartTime": "2026-02-17T18:40:00Z",
+                        "operationEndTime": "2026-02-23T12:25:00Z",
+                        "operationDuration": "4h",
+                        "operationSetupDuration": "15m",
+                        "operationTotalDuration": "4h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "BQC_S8CF2G",
+                                "scheduleMachineName": "PM-10005",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Finish",
+                        "operationStartTime": "2026-02-23T12:25:00Z",
+                        "operationEndTime": "2026-02-24T14:40:00Z",
+                        "operationDuration": "1h",
+                        "operationSetupDuration": "5m",
+                        "operationTotalDuration": "1h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "BQC_S8CF2G",
+                                "scheduleMachineName": "PM-10005",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "workOrderIdentifier": "100002723",
+        "workOrderDescription": "",
+        "workOrderCustomer": "Soraluce",
+        "workOrderItems": [
+            {
+                "itemName": "41GP561101",
+                "itemAmount": 10,
+                "itemProcessName": "Route 10",
+                "itemOperations": [
+                    {
+                        "operationName": "First binding roughing",
+                        "operationStartTime": "2026-02-06T10:55:00Z",
+                        "operationEndTime": "2026-02-10T10:35:00Z",
+                        "operationDuration": "4h",
+                        "operationSetupDuration": "10m",
+                        "operationTotalDuration": "4h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "QHJ_DEWXF7",
+                                "scheduleMachineName": "FP-8000",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Boring & keyways",
+                        "operationStartTime": "2026-02-10T10:35:00Z",
+                        "operationEndTime": "2026-02-11T19:05:00Z",
+                        "operationDuration": "2h",
+                        "operationSetupDuration": "15m",
+                        "operationTotalDuration": "2h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "QHJ_DEWXF7",
+                                "scheduleMachineName": "FP-8000",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Second binding finish",
+                        "operationStartTime": "2026-02-11T19:05:00Z",
+                        "operationEndTime": "2026-02-14T19:35:00Z",
+                        "operationDuration": "4h",
+                        "operationSetupDuration": "15m",
+                        "operationTotalDuration": "4h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "BQC_S8CF2G",
+                                "scheduleMachineName": "PM-10005",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Level and check",
+                        "operationStartTime": "2026-02-14T19:35:00Z",
+                        "operationEndTime": "2026-02-16T16:25:00Z",
+                        "operationDuration": "1h",
+                        "operationSetupDuration": "5m",
+                        "operationTotalDuration": "1h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "E4L3_4R3U9G",
+                                "scheduleMachineName": "FX-5801",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Finish",
+                        "operationStartTime": "2026-02-16T16:25:00Z",
+                        "operationEndTime": "2026-02-17T13:15:00Z",
+                        "operationDuration": "1h",
+                        "operationSetupDuration": "5m",
+                        "operationTotalDuration": "1h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "BQC_S8CF2G",
+                                "scheduleMachineName": "PM-10005",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "workOrderIdentifier": "100002724",
+        "workOrderDescription": "",
+        "workOrderCustomer": "Soraluce",
+        "workOrderItems": [
+            {
+                "itemName": "41GP561101",
+                "itemAmount": 15,
+                "itemProcessName": "Route 30",
+                "itemOperations": [
+                    {
+                        "operationName": "Complete boring",
+                        "operationStartTime": "2026-02-06T10:55:00Z",
+                        "operationEndTime": "2026-02-11T17:25:00Z",
+                        "operationDuration": "4h",
+                        "operationSetupDuration": "10m",
+                        "operationTotalDuration": "4h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "E4L3_4R3U9G",
+                                "scheduleMachineName": "FX-5801",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Boring finish",
+                        "operationStartTime": "2026-02-16T15:10:00Z",
+                        "operationEndTime": "2026-02-17T17:25:00Z",
+                        "operationDuration": "1h",
+                        "operationSetupDuration": "5m",
+                        "operationTotalDuration": "1h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "QHJ_DEWXF7",
+                                "scheduleMachineName": "FP-8000",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "operationName": "Level and check",
+                        "operationStartTime": "2026-02-19T11:05:00Z",
+                        "operationEndTime": "2026-02-20T13:20:00Z",
+                        "operationDuration": "1h",
+                        "operationSetupDuration": "5m",
+                        "operationTotalDuration": "1h",
+                        "operationStatus": "Scheduled",
+                        "operationWorkCenter": {
+                            "scheduleMachine": {
+                                "scheduleMachineId": "E4L3_4R3U9G",
+                                "scheduleMachineName": "FX-5801",
+                                "scheduleMachineOperators": [
+                                    {
+                                        "operatorName": "Operator 1",
+                                        "operatorCode": "001"
+                                    },
+                                    {
+                                        "operatorName": "Operator 2",
+                                        "operatorCode": "002"
+                                    },
+                                    {
+                                        "operatorName": "Operator 3",
+                                        "operatorCode": "003"
+                                    },
+                                    {
+                                        "operatorName": "Operator 4",
+                                        "operatorCode": "004"
+                                    },
+                                    {
+                                        "operatorName": "Operator 5",
+                                        "operatorCode": "005"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]
